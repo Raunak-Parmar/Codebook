@@ -1,6 +1,18 @@
+import { useEffect, useState } from "react";
 import { ProductCard } from "../../components/Elements/ProductCard"
+import axios from "axios";
 
 export const ProductsList = () => {
+  const [products,setProducts] = useState([]);
+
+  const getApiData = async() => {
+    const response = await axios.get('http://localhost:8000/products');
+    setProducts(response.data);
+  };
+  useEffect(() => {
+    getApiData();
+  },[])
+
   return (
     <main>
         <section className="my-5 mx-auto max-w-screen-xl">
@@ -9,13 +21,11 @@ export const ProductsList = () => {
           </div>    
 
           <div className="flex flex-wrap justify-center lg:flex-row">
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            
+            {
+              products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))
+            }
           </div>  
         </section>
       </main> 
