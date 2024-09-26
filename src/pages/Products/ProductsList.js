@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ProductCard } from "../../components/Elements/ProductCard"
+import { ProductCard } from "../../components"
 import axios from "axios";
 
 export const ProductsList = () => {
@@ -17,7 +17,7 @@ export const ProductsList = () => {
     <main>
         <section className="my-5 mx-auto max-w-screen-xl">
           <div className="my-5 flex justify-between">
-            <span className="text-2xl font-semibold dark:text-slate-100 mb-5">All eBooks (15)</span>            
+            <span className="text-2xl font-semibold dark:text-slate-100 mb-5">All eBooks ({products.length})</span>            
           </div>    
 
           <div className="flex flex-wrap justify-center lg:flex-row">
