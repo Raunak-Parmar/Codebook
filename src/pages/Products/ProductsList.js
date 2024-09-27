@@ -1,17 +1,23 @@
 import { useEffect, useState } from "react";
 import { ProductCard } from "../../components"
-import axios from "axios";
+import { useLocation } from "react-router-dom";
+import { useTitle } from "../../hooks/useTitle";
 
 export const ProductsList = () => {
+  useTitle("Explore E-Book Colletction")
   const [products,setProducts] = useState([]);
+  const search = useLocation ().search;
+  const  searchTerm = new URLSearchParams(search).get("q");
+  console.log(searchTerm);
 
-  const getApiData = async() => {
-    const response = await axios.get('http://localhost:8000/products');
-    setProducts(response.data);
-  };
   useEffect(() => {
-    getApiData();
-  },[])
+    async function fetchProducts(){
+      const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : "" }`);
+      const data = await response.json()
+      setProducts(data);
+    }
+    fetchProducts();
+  },[searchTerm]);
 
   return (
     <main>
