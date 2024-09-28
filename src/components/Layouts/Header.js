@@ -2,9 +2,15 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Logo from "../../assests/logo (1).png";
 // import { Search } from '../Sections/Search';
+import {DropdownLoggedOut} from "../Elements/DropdownLoggedOut"
+
+
+
 export const Header = () => {
     // const [search,setSearch] = useState(false);
-    const [darkMode,setDark] = useState(JSON.parse(localStorage.getItem("darkMode")) || false  );
+    const [darkMode,setDark] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
+    const [dropDown,setdropDown] = useState(false);
+
     useEffect (() => {
         localStorage.setItem("darkMode",JSON.stringify(darkMode));
         if(darkMode){
@@ -29,7 +35,8 @@ export const Header = () => {
                           <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">0</span>
                       </span>                    
                       </Link>
-                      <span className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+                      <span onClick={() => setdropDown(!dropDown)}className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
+                      {dropDown && <DropdownLoggedOut/>}
                   </div>
               </div>
           </nav>
