@@ -1,6 +1,19 @@
 export const Register = () => {
   async function handleRegister(event){
     event.preventDefault();
+    const authDetail = {
+      name: event.target.name.value,
+      email: event.target.email.value,
+      password: event.target.password.value
+    }
+
+    const response = await fetch("http://localhost:8000/register", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify(authDetail)
+    });
+    const data = await response.json()
+    console.log(data);
   }
 
 
