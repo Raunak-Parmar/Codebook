@@ -301,6 +301,24 @@
       "name": "Shubham",
       "email": "shubham@example.com",
       "password": "learnreact"
+    },
+    {
+      "email": "raunak@gmail.com",
+      "password": "$2a$10$XKEedOqUBugp5CzLMrFlX.f16mT/ssBTQZLnRn9XIvj13/qGa0Dw6",
+      "name": "raunak",
+      "id": "lbi9755"
+    },
+    {
+      "email": "shubham@gmail.com",
+      "password": "$2a$10$F6tvEzrsx48tfyxu8tes/u/V3Z./DyiALSCxWWPD45N8dAACHgy6G",
+      "name": "ssad",
+      "id": "1UMb8ol"
+    },
+    {
+      "email": "tanay@gmail.com",
+      "password": "$2a$10$Qfo93Jfy0Kx5UzOmYIN.WODdEDATQaminTya3qDAFFfCENDwvRzdi",
+      "name": "sad",
+      "id": "NBtOp3e"
     }
   ]
 }
