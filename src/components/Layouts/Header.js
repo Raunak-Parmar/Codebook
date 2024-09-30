@@ -4,10 +4,10 @@ import Logo from "../../assests/logo (1).png";
 import { Search } from '../Sections/Search';
 import {DropdownLoggedOut} from "../Elements/DropdownLoggedOut"
 import { DropdownLoggedIn } from '../Elements/DropdownLoggedIn';
-
-
+import { useCart } from '../../context/cartContext';
 
 export const Header = () => {
+    const {cartList} = useCart();
     const [search,setSearch] = useState(false);
     const [darkMode,setDark] = useState(JSON.parse(localStorage.getItem("darkMode")) || false);
     const [dropDown,setdropDown] = useState(false);
@@ -33,7 +33,7 @@ export const Header = () => {
                       <span onClick={() => setSearch(!search)}className="cursor-pointer text-xl text-gray-700 dark:text-white mr-5 bi bi-search"></span>
                       <Link to="/cart" className="text-gray-700 dark:text-white mr-5">
                       <span className="text-2xl bi bi-cart-fill relative">
-                          <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">0</span>
+                          <span className="text-white text-sm absolute -top-1 left-2.5 bg-rose-500 px-1 rounded-full ">{cartList.length}</span>
                       </span>                    
                       </Link>
                       <span onClick={() => setdropDown(!dropDown)}className="bi bi-person-circle cursor-pointer text-2xl text-gray-700 dark:text-white"></span>
