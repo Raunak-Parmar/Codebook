@@ -2,7 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import { HomePage,ProductsList,ProductDetail, Register, Login, CartPage, OrderPage, DashboardPage,PageNotFound } from "../pages";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
-export const AllRoutes = () => {
+export const Allroutes = () => {
   return (
     <>
     <Routes>
