@@ -6,7 +6,12 @@ export async function getUser () {
         method:"GET",
         headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`}
     }
-    const response = await fetch (`http://localhost:8000/600/users/${cbid}`,requestOptions);
+    const response = await fetch (`${process.env.REACT_APP_HOST}/600/users/${cbid}`,requestOptions);
+    if(!response.ok){
+        const error = new Error(response.statusText); 
+        error.status = response.status;
+        throw error;
+    }
     const data = await response.json();
     return data;
 }
@@ -14,15 +19,19 @@ export async function getUser () {
 export async function getUserOrders () {
     const token = JSON.parse(sessionStorage.getItem("token"));
     const cbid = JSON.parse(sessionStorage.getItem("cbid"));
-    const response = await fetch(`http://localhost:8000/660/orders?yser.id=${cbid}`,{
-        method: "GET",
-        headers: {"Content-Type":"application/json",Authorization: `Bearer ${token}`}
-    });
+    const requestOptions = {
+            method: "GET",
+            headers: {"Content-Type":"application/json",Authorization: `Bearer ${token}`}
+    }
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders?yser.id=${cbid}`,requestOptions);
+    if(!response.ok){
+        const error = new Error(response.statusText); 
+        error.status = response.status;
+        throw error;
+    }
     const data = await response.json();
     return data;
 }
-
-
 
 export async function createOrder (cartList,total,user) {
     const token = JSON.parse(sessionStorage.getItem("token"));
@@ -37,11 +46,16 @@ export async function createOrder (cartList,total,user) {
             id:user.id
         }
     }
-    const response = await fetch("http://localhost:8000/660/orders",{
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/orders`,{
     method:"POST",
     headers:{"Content-Type":"application/json",Authorization:`Bearer ${token}`},
     body:JSON.stringify(order)
     });
+    if(!response.ok){
+        const error = new Error(response.statusText); 
+        error.status = response.status;
+        throw error;
+    }
     const data = await response.json();
     return data;
 }

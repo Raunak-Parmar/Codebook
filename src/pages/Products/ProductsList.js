@@ -3,17 +3,25 @@ import { ProductCard } from "../../components"
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
 import { getList } from "../../services";
+import { toast } from "react-toastify";
 
 export const ProductsList = () => {
   const [products,setProducts] = useState([]);
+
   const search = useLocation ().search;
   const  searchTerm = new URLSearchParams(search).get("q");
   useTitle("Explore E-Book Colletction")
 
   useEffect(() => {
     async function fetchProducts() {
-      const data = await getList(searchTerm);
-      setProducts(data);
+      try{
+        const data = await getList(searchTerm);
+        setProducts(data);
+        
+      }catch(error){
+        toast.error(error.message);
+      }
+      
     }
     fetchProducts();
   }, [searchTerm]);
@@ -26,6 +34,7 @@ export const ProductsList = () => {
           </div>    
 
           <div className="flex flex-wrap justify-center lg:flex-row">
+  
             {
               products.map((product) => (
                 <ProductCard key={product.id} product={product} />

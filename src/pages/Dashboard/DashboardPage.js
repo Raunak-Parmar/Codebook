@@ -3,6 +3,7 @@ import { DashboardCart } from "./components/DashboardCart";
 import {DashboardEmpty} from "./components/DashboardEmpty";
 import { getUserOrders } from "../../services";
 import { useTitle } from "../../hooks/useTitle";
+import { toast } from "react-toastify";
 
 export const DashboardPage = () => {
   useTitle("Dashboard");
@@ -11,15 +12,15 @@ export const DashboardPage = () => {
     const [orders,setOrders] = useState([]);
     useEffect(() => {
         async function fetchOrders(){
-        //   const response = await fetch(`http://localhost:8000/660/orders?yser.id=${cbid}`,{
-        //     method: "GET",
-        //     headers: {"Content-Type":"application/json",Authorization: `Bearer ${token}`}
-        // });
-          const data = await getUserOrders();
-          setOrders(data);
-        }
-        fetchOrders();
-    },[]);
+      try{
+        const data = await getUserOrders();
+        setOrders(data);
+      }catch(error){
+        toast.error(error.message);
+      }
+    }
+      fetchOrders();
+  },[]);
 
     return (
       <main>

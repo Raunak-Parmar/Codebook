@@ -4,7 +4,12 @@ export async function login(authDetail) {
     headers:{"Content-Type":"application/json"},
     body:JSON.stringify(authDetail)
   }
-  const response = await fetch("http://localhost:8000/login",requestOptions);
+  const response = await fetch(`${process.env.REACT_APP_HOST}/login`,requestOptions);
+  if(!response.ok){
+    const error = new Error(response.statusText); 
+    error.status = response.status;
+    throw error;
+}
   const data = await response.json();
 
   if(data.accessToken){
@@ -21,7 +26,12 @@ export async function register(authDetail){
       body: JSON.stringify(authDetail)
     }
   
-    const response = await fetch("http://localhost:8000/register", requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/register`, requestOptions);
+    if(!response.ok){
+      const error = new Error(response.statusText); 
+      error.status = response.status;
+      throw error;
+  }
     const data = await response.json();
   
     if(data.accessToken){

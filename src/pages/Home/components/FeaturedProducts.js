@@ -8,11 +8,11 @@ export const FeaturedProducts = () => {
   useEffect(() => {
     async function fetchProducts() {
       try {
-        const data = await getFeaturedList(); // Ensure you're awaiting the promise
-        setProducts(Array.isArray(data) ? data : []); // Fallback to empty array if not an array
+        const data = await getFeaturedList(); 
+        setProducts(Array.isArray(data) ? data : []); 
       } catch (error) {
         console.error("Error fetching featured products:", error);
-        setProducts([]); // Fallback to empty array in case of error
+        setProducts([]); 
       }
     }
 
