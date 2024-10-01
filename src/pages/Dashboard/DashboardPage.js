@@ -1,44 +1,39 @@
 import { useEffect, useState } from "react";
-import { DashboardCard } from "./components/DashboardCart"; // Ensure correct spelling in imports
-import { DashboardEmpty } from "./components/DashboardEmpty";
+import { DashboardCart } from "./components/DashboardCart";
+import {DashboardEmpty} from "./components/DashboardEmpty";
 
 export const DashboardPage = () => {
-    const [orders, setOrders] = useState([]); // Keep this as an empty array
+    const [orders,setOrders] = useState([]);
     const token = JSON.parse(sessionStorage.getItem("token"));
+    const cbid = JSON.parse(sessionStorage.getItem("cbid"));
 
     useEffect(() => {
-        async function fetchOrders() {
-            const response = await fetch(`http://localhost:8000/660/orders?user.id=1`, {
+        async function fetchOrders(){
+            const response = await fetch(`http://localhost:8000/660/orders?yser.id=${cbid}`,{
                 method: "GET",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
+                headers: {"Content-Type":"application/json",Authorization: `Bearer ${token}`}
             });
             const data = await response.json();
-
-            // Check if data is an array before setting state
-            if (Array.isArray(data)) {
-                setOrders(data); // Only set orders if data is an array
-            } else {
-                console.error("Fetched data is not an array:", data); // Debug log
-                setOrders([]); // Reset to an empty array if it's not an array
-            }
+            setOrders(data);
         }
         fetchOrders();
-    }, [token]); // Ensure to include token in dependencies
+    },[cbid,token]);
 
     return (
-        <main>
-            <section>
-                <p className="text-2xl text-center font-semibold dark:text-slate-100 my-10 underline underline-offset-8">My Dashboard</p>
-            </section>
-            <section>
-                {Array.isArray(orders) && orders.length > 0 ? (
-                    orders.map((order) => (
-                        <DashboardCard key={order.id} order={order} />
-                    ))
-                ) : (
-                    <DashboardEmpty />
-                )}
-            </section>
-        </main>
-    );
-};
+      <main>
+        <section>
+          <p className="text-2xl text-center font-semibold dark:text-slate-100 my-10 underline underline-offset-8">My Dashboard</p>
+        </section>
+
+        <section>
+            {orders.length && orders.map((order) =>(
+                <DashboardCart key={order.id} order={order} />
+            ))}
+        </section>
+
+        <section>
+            {orders.length === 0 && <DashboardEmpty/>}
+        </section>
+      </main>
+    )
+  }

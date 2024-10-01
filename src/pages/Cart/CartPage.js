@@ -4,9 +4,7 @@ import { useCart } from "../../context/cartContext";
 
 export const CartPage = () => {
   const {cartList} = useCart();
-
-    
-    return (
+  return (
     <main>
         {cartList.length ? <CartList/> : <CartEmpty/>}
     </main>
