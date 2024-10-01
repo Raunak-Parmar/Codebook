@@ -1,4 +1,4 @@
-import { AllRoutes } from './routes/Allroutes'; 
+import { AllRoutes } from './routes/Allroutes';
 import { Footer, Header } from './components';
 
 function App() {
