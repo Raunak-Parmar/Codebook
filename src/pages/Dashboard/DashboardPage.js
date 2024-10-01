@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { DashboardCart } from "./components/DashboardCart";
 import {DashboardEmpty} from "./components/DashboardEmpty";
+import { getUserOrders } from "../../services";
+import { useTitle } from "../../hooks/useTitle";
 
 export const DashboardPage = () => {
+  useTitle("Dashboard");
+  // const token = JSON.parse(sessionStorage.getItem("token"));
+  // const cbid = JSON.parse(sessionStorage.getItem("cbid"));
     const [orders,setOrders] = useState([]);
-    const token = JSON.parse(sessionStorage.getItem("token"));
-    const cbid = JSON.parse(sessionStorage.getItem("cbid"));
-
     useEffect(() => {
         async function fetchOrders(){
-            const response = await fetch(`http://localhost:8000/660/orders?yser.id=${cbid}`,{
-                method: "GET",
-                headers: {"Content-Type":"application/json",Authorization: `Bearer ${token}`}
-            });
-            const data = await response.json();
-            setOrders(data);
+        //   const response = await fetch(`http://localhost:8000/660/orders?yser.id=${cbid}`,{
+        //     method: "GET",
+        //     headers: {"Content-Type":"application/json",Authorization: `Bearer ${token}`}
+        // });
+          const data = await getUserOrders();
+          setOrders(data);
         }
         fetchOrders();
-    },[cbid,token]);
+    },[]);
 
     return (
       <main>

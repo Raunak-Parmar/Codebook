@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ProductCard } from "../../components"
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
+import { getList } from "../../services";
 
 export const ProductsList = () => {
   const [products,setProducts] = useState([]);
@@ -11,9 +12,7 @@ export const ProductsList = () => {
 
   useEffect(() => {
     async function fetchProducts() {
-      const query = searchTerm ? `name_like=${searchTerm}` : '';
-      const response = await fetch(`http://localhost:8000/products?${query}`);
-      const data = await response.json();
+      const data = await getList(searchTerm);
       setProducts(data);
     }
     fetchProducts();
