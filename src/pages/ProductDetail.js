@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Rating } from '../components';
-import {useCart} from "../context/CartContexts"
+import {useCart} from "../context";
 import { useParams } from 'react-router-dom';
 import { useTitle } from "../hooks/useTitle";
 import { getProduct } from '../services';

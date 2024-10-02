@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { Checkout } from "./Checkout"
 import { CartCard } from "./CartCard";
-import { useCart } from "../../../context/CartContexts";
+import { useCart } from "../../../context";
 
 export const CartList = () => {
     const {cartList, total} = useCart();
