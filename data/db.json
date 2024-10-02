@@ -276,6 +276,12 @@
       "password": "$2a$10$Mvph1ZYqrDuDG8bImLm1e./2Pmct0QQX3KclL.pb3b1RvLPd1JZK6",
       "name": "Raunak Parmar",
       "id": "1BhyqXA"
+    },
+    {
+      "email": "tanubabu@example.com",
+      "password": "$2a$10$1YwTH5e0oyYlrjN4kchu2esSPuH47oE2QKK.G7BObh4.uJCbLYFIy",
+      "name": "tanaybabu",
+      "id": "wtJsprM"
     }
   ]
 }
