@@ -4,7 +4,7 @@ import Logo from "../../assests/logo (1).png";
 
 import {DropdownLoggedOut} from "../Elements/DropdownLoggedOut"
 import { DropdownLoggedIn } from '../Elements/DropdownLoggedIn';
-import { useCart } from '../../context/cartContext';
+import { useCart } from '../../context/CartContexts';
 
 export const Header = () => {
     const {cartList} = useCart();

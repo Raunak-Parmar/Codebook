@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { useCart } from "../../../context/cartContext"
+import { useCart } from "../../../context/CartContexts"
 
 export const CartCard = ({product}) => {
   const {removeFromCart} = useCart();
