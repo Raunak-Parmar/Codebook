@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 import { ProductCard } from "../../components"
 import { useLocation } from "react-router-dom";
 import { useTitle } from "../../hooks/useTitle";
 import { getList } from "../../services";
-import { toast } from "react-toastify";
 
 export const ProductsList = () => {
   const [products,setProducts] = useState([]);
