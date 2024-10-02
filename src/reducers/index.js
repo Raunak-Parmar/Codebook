@@ -1,1 +1,1 @@
-export {CartReducer} from "./CartReducer";
+export {CartReducer} from "../reducers/CartReducer";
